@@ -7,11 +7,11 @@ module.exports = (grunt) ->
     copy:
       ionic: # Copy Ionic assets
         files:
-          'build/vendor/ionic/js/ionic.bundle.js': 'vendor/ionic/js/ionic.bundle.js'
-          'build/vendor/ionic/fonts/ionicons.eot': 'vendor/ionic/fonts/ionicons.eot'
-          'build/vendor/ionic/fonts/ionicons.svg': 'vendor/ionic/fonts/ionicons.svg'
-          'build/vendor/ionic/fonts/ionicons.ttf': 'vendor/ionic/fonts/ionicons.ttf'
-          'build/vendor/ionic/fonts/ionicons.woff': 'vendor/ionic/fonts/ionicons.woff'
+          'build/vendor/ionic/js/ionic.bundle.js'  : 'vendor/ionic/js/ionic.bundle.js'
+          'build/vendor/ionic/fonts/ionicons.eot'  : 'vendor/ionic/fonts/ionicons.eot'
+          'build/vendor/ionic/fonts/ionicons.svg'  : 'vendor/ionic/fonts/ionicons.svg'
+          'build/vendor/ionic/fonts/ionicons.ttf'  : 'vendor/ionic/fonts/ionicons.ttf'
+          'build/vendor/ionic/fonts/ionicons.woff' : 'vendor/ionic/fonts/ionicons.woff'
       angular:
         files:
           'build/vendor/angular-resource/angular-resource.js': 'vendor/angular-resource/angular-resource.js'
@@ -55,7 +55,7 @@ module.exports = (grunt) ->
       ionic: # process Ionic SCSS files into a single CSS
         files:
           'build/vendor/ionic/css/ionic.css': 'vendor/ionic/scss/ionic.scss'
-           
+ 
     # grunt coffee
     coffee:
       compile:
@@ -73,7 +73,7 @@ module.exports = (grunt) ->
           bare: true
           preserve_dirs: true
 
-    # karma test launcher
+    # app test launcher
     app:
       unit:
         configFile: 'app.config.js'

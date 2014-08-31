@@ -5,18 +5,11 @@
 				<i class="icon ion-ios7-search placeholder-icon"></i>
 				<input type="search" placeholder="Search" ng-model="options.search" ng-change="onFilterChange(options.search)" ng-focus="startSearch()">
 			</label>
-			<!--<button class="button button-clear" ng-click="clearFilter()">Cancel</button>-->
 		</header>
 		<ion-content class="has-header">
 			<ion-list class="side-menu">
 				<ion-item nav-clear menu-close ui-sref="app.home">
 					Home
-				</ion-item>
-				<ion-item nav-clear menu-close ui-sref="app.contacts.list">
-					Contacts
-				</ion-item>
-				<ion-item nav-clear menu-close ui-sref="app.account">
-					My Account
 				</ion-item>
 			</ion-list>
 		</ion-content>
