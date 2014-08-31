@@ -39,7 +39,7 @@ module.exports = (grunt) ->
         options:
           separator: ';'
         src: 'src/app/**/*.js'
-        dest: 'build/karmacrm.js'
+        dest: 'build/app.js'
 
     # grunt html2js
     html2js:
@@ -60,23 +60,23 @@ module.exports = (grunt) ->
     coffee:
       compile:
         src: ['src/app/**/*.coffee', '!src/app/**/*.test.coffee']
-        dest: 'build/karmacrm.coffee.js'
+        dest: 'build/app.coffee.js'
         ext: 'coffee.js'
         options:
           bare: true
           preserve_dirs: true
       tests:
         src: 'src/app/**/*.test.coffee'
-        dest: 'build/karmacrm.test.coffee.js'
+        dest: 'build/app.test.coffee.js'
         ext: 'coffee.js'
         options:
           bare: true
           preserve_dirs: true
 
     # karma test launcher
-    karma:
+    app:
       unit:
-        configFile: 'karma.config.js'
+        configFile: 'app.config.js'
 
     # grunt watch
     watch:
