@@ -1,0 +1,13 @@
+<ion-view title="Contact Tasks">
+	<ion-nav-buttons side="right">
+		<a class="button icon button-balanced icon ion-plus" ui-sref="app.tasks.form.new"></a>
+	</ion-nav-buttons>
+	<ion-content>
+		<ion-list class="contact-list">
+			<ion-item ng-repeat="task in tasks" ui-sref="app.tasks.show({taskId: task.id})">
+				<h2>{{task.body}}</h2>
+				<p>{{moment(task.updated_at).format('lll')}}</p>
+			</ion-item>
+		</ion-list>
+	</ion-content>
+</ion-view>

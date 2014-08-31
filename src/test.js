@@ -1,0 +1,21 @@
+﻿var fields = [
+	{ "id": 123575, "name": "Monday", "field_type_id": 3, "field_for": "Contact", "parent_id": 123574, "setting_1": null, "options": [] },
+	{ "id": 123419, "name": "Plays instrument", "field_type_id": 2, "field_for": "Contact", "parent_id": null, "setting_1": "USD", "options": [{ "id": 123421, "name": "Guitar", "parent_id": 123419 }, { "id": 123422, "name": "Drums", "parent_id": 123419 }, { "id": 123423, "name": "Piano", "parent_id": 123419 }, { "id": 123424, "name": "Violin", "parent_id": 123419 }] },
+	{ "id": 123421, "name": "Guitar", "field_type_id": 2, "field_for": "Contact", "parent_id": 123419, "setting_1": null, "options": [] },
+	{ "id": 123576, "name": "Tuesday", "field_type_id": 3, "field_for": "Contact", "parent_id": 123574, "setting_1": null, "options": [] },
+	{ "id": 123422, "name": "Drums", "field_type_id": 2, "field_for": "Contact", "parent_id": 123419, "setting_1": null, "options": [] },
+	{ "id": 123577, "name": "Wednesday", "field_type_id": 3, "field_for": "Contact", "parent_id": 123574, "setting_1": null, "options": [] },
+	{ "id": 123423, "name": "Piano", "field_type_id": 2, "field_for": "Contact", "parent_id": 123419, "setting_1": null, "options": [] },
+	{ "id": 123578, "name": "Thursday", "field_type_id": 3, "field_for": "Contact", "parent_id": 123574, "setting_1": null, "options": [] },
+	{ "id": 123424, "name": "Violin", "field_type_id": 2, "field_for": "Contact", "parent_id": 123419, "setting_1": null, "options": [] },
+	{ "id": 123579, "name": "Friday", "field_type_id": 3, "field_for": "Contact", "parent_id": 123574, "setting_1": null, "options": [] },
+	{ "id": 123523, "name": "Middle Name", "field_type_id": 5, "field_for": "Contact", "parent_id": null, "setting_1": "USD" },
+	{ "id": 123580, "name": "Saturday", "field_type_id": 3, "field_for": "Contact", "parent_id": 123574, "setting_1": null, "options": [] },
+	{ "id": 123524, "name": "Jane", "field_type_id": null, "field_for": "Contact", "parent_id": 123523, "setting_1": null },
+	{ "id": 123581, "name": "Sunday", "field_type_id": 3, "field_for": "Contact", "parent_id": 123574, "setting_1": null, "options": [] },
+	{ "id": 123525, "name": "Georges", "field_type_id": null, "field_for": "Contact", "parent_id": 123523, "setting_1": null },
+	{ "id": 123573, "name": "Monthly sales", "field_type_id": 8, "field_for": "Contact", "parent_id": null, "setting_1": "GBP" },
+	{ "id": 123574, "name": "Working days", "field_type_id": 3, "field_for": "Contact", "parent_id": null, "setting_1": "USD", "options": [{ "id": 123575, "name": "Monday", "parent_id": 123574 }, { "id": 123576, "name": "Tuesday", "parent_id": 123574 }, { "id": 123577, "name": "Wednesday", "parent_id": 123574 }, { "id": 123578, "name": "Thursday", "parent_id": 123574 }, { "id": 123579, "name": "Friday", "parent_id": 123574 }, { "id": 123580, "name": "Saturday", "parent_id": 123574 }, { "id": 123581, "name": "Sunday", "parent_id": 123574 }] },
+	{ "id": 123730, "name": "Activity description", "field_type_id": 4, "field_for": "Contact", "parent_id": null, "setting_1": "USD" },
+	{ "id": 123731, "name": "Renewal date", "field_type_id": 7, "field_for": "Contact", "parent_id": null, "setting_1": "USD" }
+]

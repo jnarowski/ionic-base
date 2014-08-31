@@ -1,0 +1,99 @@
+<ion-view title="Contact">
+	<ion-nav-buttons side="right">
+		<a class="button button-balanced" ui-sref="app.contacts.form.edit({contactId: contact.id})">Edit</a>
+	</ion-nav-buttons>
+	<ion-content class="show-panel">
+		<div class="avatar">
+			<img class="avatar-image" ng-show="contact.avatar_url" ng-src="{{avatarRoot}}{{contact.avatar_url}}">
+			<div class="name">{{contact.first_name}} {{contact.last_name}}</div>
+			<div class="position">{{contact.company.name}}</div>
+			<div class="avatar-button-bar">
+				<button type="button" class="button button-light" ng-disabled="!firstPhone()" ng-href="{{'tel:' + firstPhone().number}}"><i class="icon ion-ios7-telephone"></i></button>
+				<button type="button" class="button button-light" ng-disabled="!firstMobilePhone()" ng-href="{{'sms:' + firstMobilePhone().number}}"><i class="icon ion-chatbubble"></i></button>
+				<button type="button" class="button button-light" ng-disabled="!contact.emails.length" ng-href="{{'mailto:' + contact.emails[0].email}}"><i class="icon ion-email"></i></button>
+			</div>
+		</div>
+		<ion-list>
+			<ion-item class="item-positive item-icon-right" ui-sref="app.contacts.tasklist({contactId: contact.id})">
+				Tasks
+				<span class="badge badge-assertive">{{tasks.length}}</span>
+				<i class="icon ion-chevron-right icon-accessory"></i>
+			</ion-item>
+			<ion-item class="item-positive item-icon-right" ui-sref="app.contacts.notelist({contactId: contact.id})">
+				Notes
+				<span class="badge badge-assertive">{{notes.length}}</span>
+				<i class="icon ion-chevron-right icon-accessory"></i>
+			</ion-item>
+			<ion-item class="item-divider" ng-show="contact.phone_numbers.length">Phone</ion-item>
+			<ion-item ng-repeat="phone in contact.phone_numbers">
+				<label>
+					<a ng-href="{{'tel:' + phone.number}}">{{phone.number}}</a>
+					<span class="item-note">{{phoneTypes.getName(phone.phone_number_type_id)}}</span>
+					<i class="icon ion-ios7-chatbubble-outline icon-right" ng-show="phone.phone_number_type_id == 2" ng-href="{{'sms:' + phone.number}}"></i>
+					<i class="icon ion-ios7-telephone-outline icon-right" ng-href="{{'tel:' + phone.number}}"></i>
+				</label>
+			</ion-item>
+			<ion-item class="item-divider" ng-show="contact.emails.length">Email</ion-item>
+			<ion-item ng-repeat="email in contact.emails">
+				<label>
+					<a ng-href="{{'mailto:' + email.email}}">{{email.email}}</a>
+					<span class="item-note">{{emailTypes.getName(email.secondary_email_type_id)}}</span>
+					<i class="icon ion-ios7-email-outline icon-right" ng-href="{{'mailto:' + email.email}}"></i>
+				</label>
+			</ion-item>
+			<ion-item class="item-divider" ng-show="contact.social_accounts.length">Social Accounts</ion-item>
+			<ion-item ng-repeat="account in contact.social_accounts">
+				<label>
+					{{account.name}}
+					<span class="item-note">{{socialAccountTypes.getName(account.social_account_type_id)}}</span>
+				</label>
+			</ion-item>
+			<ion-item class="item-divider" ng-show="contact.websites.length">Website</ion-item>
+			<ion-item ng-repeat="website in contact.websites">
+				<label>
+					<a ng-href="{{(website.url.startsWith('http') ? '' : 'http://') + website.url}}" target="_blank">{{website.url}}</a>
+					<span class="item-note">{{websiteTypes.getName(website.secondary_website_type_id)}}</span>
+				</label>
+			</ion-item>
+			<ion-item class="item-divider" ng-show="contact.addresses.length">Address</ion-item>
+			<ion-item ng-repeat="address in contact.addresses">
+				<label>
+					<div>{{address.street}}</div>
+					<div>{{address.city}}, {{address.postal_code}}</div>
+					<div>{{address.state}}</div>
+					<div>{{countries.getName(address.country)}}</div>
+					<span class="item-note">{{addressTypes.getName(address.address_type)}}</span>
+				</label>
+			</ion-item>
+			<label class="item" ng-show="contact.industry_id">
+				{{industries.getName(contact.industry_id)}}
+				<span class="item-note">Industry</span>
+			</label>
+			<ion-list ng-show="hasCustomValues">
+				<div class="item" ng-repeat="customValue in contact.customValues | filter : hasCustomValue : customValue">
+					<custom-field-value custom-value="customValue"></custom-field-value>
+				</div>
+			</ion-list>
+			<label class="item" ng-show="contact.referral_source_id">
+				{{referralSources.getName(contact.referral_source_id)}}
+				<span class="item-note">Referral Source</span>
+			</label>
+			<label class="item" ng-show="contact.tag_list && contact.tag_list.length">
+				{{contact.tag_list.join(', ')}}
+				<span class="item-note">Tags</span>
+			</label>
+			<label class="item" ng-show="contact.user_id">
+				{{users.getName(contact.user_id)}}
+				<span class="item-note">User Assignment</span>
+			</label>
+			<label class="item" ng-show="contact.lead_process_id">
+				{{contactStages.getName(contact.lead_process_id)}}
+				<span class="item-note">Contact Stage</span>
+			</label>
+			<label class="item" ng-show="contact.lead_status_id">
+				{{contactStatuses.getName(contact.lead_status_id)}}
+				<span class="item-note">Status</span>
+			</label>
+		</ion-list>
+	</ion-content>
+</ion-view>

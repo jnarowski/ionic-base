@@ -1,0 +1,128 @@
+<ion-view title="{{editedContact.Id ? 'Edit Contact' : 'New Contact'}}">
+	<ion-nav-buttons side="right">
+		<a class="button icon button-clear" ng-click="update()"><i class="icon ion-checkmark-circled" ng-show="hasChanges()"></i></a>
+	</ion-nav-buttons>
+	<ion-content class="edit-panel">
+		<div class="edit-avatar">
+			<img class="avatar-image" ng-show="contact.avatar_url" ng-src="{{avatarRoot}}{{contact.avatar_url}}">
+			<div class="avatar-right">
+				<div class="name"><input type="text" ng-model="editedContact.first_name" placeholder="First Name" /></div>
+				<div class="name"><input type="text" ng-model="editedContact.last_name" placeholder="Last Name" /></div>
+			</div>
+		</div>
+		<ion-list>
+			<a class="item" ng-click="selectCompany(editedContact)">
+				<span class="item-content">{{editedContact.company.name}}</span>
+				<span class="item-note">Company</span>
+			</a>
+			<a class="item item-icon-right" ng-click="selectIndustry(editedContact)">
+				<span class="item-content">{{industries.getName(editedContact.industry_id)}}</span>
+				<span class="item-note">Industry</span>
+			</a>
+
+			<div class="item item-divider"></div>
+			<div class="item" ng-repeat="phone in editedContact.phone_numbers | notDestroyed">
+				<button class="button-delete icon ion-minus-circled" ng-click="deletePhone(phone)" ng-disabled="!canDeletePhone(phone)"></button>
+				<label class="item-content">
+					<input type="text" ng-model="phone.number" placeholder="Phone Number" />
+				</label>
+				<a class="item-note" ng-click="selectPhoneType(phone)">
+					{{phoneTypes.getName(phone.phone_number_type_id)}}
+				</a>
+			</div>
+
+			<div class="item item-divider"></div>
+			<div class="item" ng-repeat="email in editedContact.emails | notDestroyed">
+				<button class="button-delete icon ion-minus-circled" ng-click="deleteEmail(email)" ng-disabled="!canDeleteEmail(email)"></button>
+				<label class="item-content">
+					<input type="text" ng-model="email.email" placeholder="Email address" />
+				</label>
+				<a class="item-note" ng-click="selectEmailType(email)">
+					{{emailTypes.getName(email.secondary_email_type_id)}}
+				</a>
+			</div>
+
+			<div class="item item-divider"></div>
+			<div class="item" ng-repeat="account in editedContact.social_accounts | notDestroyed">
+				<button class="button-delete icon ion-minus-circled" ng-click="deleteSocialAccount(account)" ng-disabled="!canDeleteSocialAccount(account)"></button>
+				<label class="item-content">
+					<input type="text" ng-model="account.name" placeholder="Social Account ID" />
+				</label>
+				<a class="item-note" ng-click="selectSocialAccountType(account)">
+					{{socialAccountTypes.getName(account.social_account_type_id)}}
+				</a>
+			</div>
+
+			<div class="item item-divider"></div>
+			<div class="item" ng-repeat="website in editedContact.websites | notDestroyed">
+				<button class="button-delete icon ion-minus-circled" ng-click="deleteWebsite(website)" ng-disabled="!canDeleteWebsite(website)"></button>
+				<label class="item-content">
+					<input type="text" ng-model="website.url" placeholder="Website" />
+				</label>
+				<a class="item-note" ng-click="selectWebsiteType(website)">
+					{{websiteTypes.getName(website.secondary_website_type_id)}}
+				</a>
+			</div>
+
+			<div class="item item-divider"></div>
+			<div class="item item-address" ng-repeat="address in editedContact.addresses | notDestroyed">
+				<button class="button-delete icon ion-minus-circled" ng-click="deleteAddress(address)" ng-disabled="!canDeleteAddress(address)"></button>
+				<div class="item-content" style="display: block;">
+					<div class="address-part">
+						<input type="text" ng-model="address.street" placeholder="Street" />
+					</div>
+					<div class="address-part postal-code-city">
+						<div class="postal-code"><input type="text" ng-model="address.postal_code" placeholder="Postal Code" /></div>
+						<div class="city"><input type="text" ng-model="address.city" placeholder="City" /></div>
+					</div>
+					<div class="address-part">
+						<input type="text" ng-model="address.state" placeholder="State" />
+					</div>
+					<div class="address-part" ng-click="selectCountry(address)">
+						{{countries.getName(address.country)}}
+					</div>
+				</div>
+				<a class="item-note" ng-click="selectAddressType(address)">
+					{{addressTypes.getName(address.address_type)}}
+				</a>
+			</div>
+
+			<div class="item item-divider"></div>
+			<div ng-repeat="customValue in editedContact.customValues">
+				<custom-field-edit custom-value="customValue"></custom-field-edit>
+			</div>
+
+			<div class="item item-divider"></div>
+			<a class="item" ng-click="selectReferralSource(editedContact)">
+				<span class="item-content">{{referralSources.getName(editedContact.referral_source_id)}}</span>
+				<span class="item-note">Referral Source</span>
+			</a>
+
+			<div class="item item-divider"></div>
+			<div class="item" ng-repeat="tag in editedContact.tag_list track by $index">
+				<button class="button-delete icon ion-minus-circled" ng-click="deleteTag(tag)" ng-disabled="!canDeleteTag(tag)"></button>
+				<label class="item-content">
+					<input type="text" ng-model="editedContact.tag_list[$index]" placeholder="Tag" />
+				</label>
+				<span class="item-note"></span>
+			</div>
+
+			<div class="item item-divider"></div>
+			<a class="item" ng-click="selectUser(editedContact)">
+				<span class="item-content">{{users.getName(editedContact.user_id)}}</span>
+				<span class="item-note">Contact Assignment</span>
+			</a>
+			<a class="item" ng-click="selectContactStage(editedContact)">
+				<span class="item-content">{{contactStages.getName(editedContact.lead_process_id)}}</span>
+				<span class="item-note">Contact Stage</span>
+			</a>
+			<a class="item" ng-click="selectContactStatus(editedContact)">
+				<span class="item-content">{{contactStatuses.getName(editedContact.lead_status_id)}}</span>
+				<span class="item-note">Contact Status</span>
+			</a>
+			<div class="padding" ng-show="editedContact.Id">
+				<button class="button button-block button-assertive" ng-click="delete()">Delete Contact</button>
+			</div>
+		</ion-list>
+	</ion-content>
+</ion-view>

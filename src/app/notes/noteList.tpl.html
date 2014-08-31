@@ -1,0 +1,14 @@
+<ion-view title="Contact Notes">
+	<ion-nav-buttons side="right">
+		<a class="button icon button-balanced icon ion-plus" ui-sref="app.notes.form.new"></a>
+	</ion-nav-buttons>
+	<ion-content>
+		<ion-list class="contact-list">
+			<ion-item ng-repeat="note in notes" ui-sref="app.notes.show({noteId: note.id})">
+				<h2>{{note.body}}</h2>
+				<p ng-show="note.participants.length"><span ng-repeat="participant in note.participants"><span ng-show="$index">, </span>{{participant.label}}</span></p>
+				<p>{{note.history_record_label}} {{note.history_type_name}} {{note.created_at | shortDate}}</p>
+			</ion-item>
+		</ion-list>
+	</ion-content>
+</ion-view>

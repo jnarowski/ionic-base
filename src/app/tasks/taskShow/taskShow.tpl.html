@@ -1,0 +1,27 @@
+<ion-view title="Task">
+	<ion-nav-buttons side="right">
+		<a class="button button-balanced" ui-sref="app.tasks.form.edit({taskId: task.id})">Edit</a>
+	</ion-nav-buttons>
+	<ion-content>
+		<ion-list>
+			<ion-item>
+				<h2>{{task.body}}</h2>
+				<p>{{moment(task.updated_at).format('lll')}}</p>
+			</ion-item>
+			<ion-item ng-show="task.description">{{task.description}}</ion-item>
+			<ion-item class="item item-toggle">
+				Complete
+				<label class="toggle">
+					<input type="checkbox" ng-model="task.complete" ng-disabled="true">
+					<div class="track">
+						<div class="handle"></div>
+					</div>
+				</label>
+			</ion-item>
+			<ion-item ng-show="task.participants.length > 0">
+				<h2>Participants</h2>
+				<h3 ng-repeat="participant in task.participants">{{participant.label}}</h3>
+			</ion-item>
+		</ion-list>
+	</ion-content>
+</ion-view>
